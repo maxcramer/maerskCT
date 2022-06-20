@@ -11,9 +11,28 @@ var shuffSortObj = (function shuffleAndSort() {
     { text: 9, class: "colorGrp3" },
   ];
   // shuffle
+  function shuffle() {
+    let ctr = tilesArr.length;
+    let temp;
+    let index;
+
+    while (ctr > 0) {
+      index = Math.floor(Math.random() * ctr);
+      ctr--;
+      temp = tilesArr[ctr];
+      tilesArr[ctr] = tilesArr[index];
+      tilesArr[index] = temp;
+    }
+    render(tilesArr);
+  }
 
   // sort
-
+  function sort(tilesArr) {
+    tilesArr.sort(function (x, y) {
+      return x.text - y.text;
+    });
+    render(tilesArr);
+  }
   // render
   function render(tilesArr) {
     document.getElementById("grid").innerHTML = "";
@@ -28,6 +47,11 @@ var shuffSortObj = (function shuffleAndSort() {
     }
   }
   return {
-    // return sort and shuffle here
+    shuffle,
+    sort,
   };
 })();
+function load() {
+  shuffSortObj.sort();
+}
+window.onload = load;
