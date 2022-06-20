@@ -1,5 +1,5 @@
-var shuffleAndSortObj = (function shuffleAndSort() {
-  const arra1 = [
+var shuffSortObj = (function shuffleAndSort() {
+  const tilesArr = [
     { text: 1, class: "colorGrp1" },
     { text: 2, class: "colorGrp2" },
     { text: 3, class: "colorGrp3" },
@@ -10,40 +10,40 @@ var shuffleAndSortObj = (function shuffleAndSort() {
     { text: 8, class: "colorGrp1" },
     { text: 9, class: "colorGrp3" },
   ];
+
   function shuffle() {
-    let ctr = arra1.length;
+    let ctr = tilesArr.length;
     let temp;
     let index;
 
-    // While there are elements in the array
     while (ctr > 0) {
-      // Pick a random index
       index = Math.floor(Math.random() * ctr);
-      // Decrease ctr by 1
       ctr--;
-      // And swap the last element with it
-      temp = arra1[ctr];
-      arra1[ctr] = arra1[index];
-      arra1[index] = temp;
+      temp = tilesArr[ctr];
+      tilesArr[ctr] = tilesArr[index];
+      tilesArr[index] = temp;
     }
-    render(arra1);
+    render(tilesArr);
   }
-  function sort() {
-    arra1.sort(function (x, y) {
+
+  // sort
+  function sortArr() {
+    tilesArr.sort(function (x, y) {
       return x.text - y.text;
     });
-    render(arra1);
+    render(tilesArr);
   }
-  function render(arra1) {
+  // render
+  function render(tilesArr) {
     document.getElementById("grid").innerHTML = "";
-    for (var i = 0; i < arra1.length; i++) {
+    for (var i = 0; i < tilesArr.length; i++) {
       var card = document.createElement("div");
       var value = document.createElement("div");
       card.className =
-        "col-md-4 col-sm-4 col-xs-12 square card " + arra1[i].class;
+        "col-md-4 col-sm-4 col-xs-12 square card " + tilesArr[i].class;
       value.className = "value";
 
-      value.innerHTML = arra1[i].text;
+      value.innerHTML = tilesArr[i].text;
       card.appendChild(value);
 
       document.getElementById("grid").appendChild(card);
@@ -51,10 +51,10 @@ var shuffleAndSortObj = (function shuffleAndSort() {
   }
   return {
     shuffle,
-    sort,
+    sortArr,
   };
 })();
 function load() {
-  shuffleAndSortObj.sort();
+  shuffSortObj.sortArr();
 }
 window.onload = load;
