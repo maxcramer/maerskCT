@@ -13,15 +13,21 @@ var shuffSortObj = (function shuffleAndSort() {
 
   function shuffle() {
     let ctr = tilesArr.length;
-    let temp;
+    let temp; // temporary value
     let index;
 
+    // while the array has items in it
     while (ctr > 0) {
-      index = Math.floor(Math.random() * ctr);
+      // Fisher-Yates Algorithm -->
+      // Choose a random index
+      index = Math.floor(Math.random() * ctr); // Generate random number between 0 and how many items in array
+      // decrease ctr value by 1
       ctr--;
-      temp = tilesArr[ctr];
-      tilesArr[ctr] = tilesArr[index];
-      tilesArr[index] = temp;
+      // SWAPPING last element
+      temp = tilesArr[ctr]; // targetting random index position
+      tilesArr[ctr] = tilesArr[index]; // take array at random index and swap for index of the loop
+      tilesArr[index] = temp; // Putting temp value into index position
+      // <----
     }
     render(tilesArr);
   }
